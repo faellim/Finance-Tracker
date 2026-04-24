@@ -1,8 +1,10 @@
-# Finance Tracker
-![Python](https://img.shields.io/badge/Python-3.11+-blue)
-![Flask](https://img.shields.io/badge/Flask-Web%20Framework-black)
-![SQLite](https://img.shields.io/badge/SQLite-Database-blue)
+# 💰 Finance Tracker
+
+![Python](https://img.shields.io/badge/Python-3.11+-3776AB?logo=python\&logoColor=white)
+![Flask](https://img.shields.io/badge/Flask-000000?logo=flask\&logoColor=white)
+![SQLite](https://img.shields.io/badge/SQLite-07405E?logo=sqlite\&logoColor=white)
 ![Tests](https://img.shields.io/badge/Tests-unittest-green)
+![Status](https://img.shields.io/badge/Status-Active-success)
 ![License](https://img.shields.io/badge/License-MIT-lightgrey)
 
 A full-featured personal finance tracker built with Python, designed to manage expenses, organize categories, and generate monthly insights through both a web interface and a CLI tool.
@@ -13,14 +15,7 @@ This project was created as a production-inspired finance application to demonst
 
 ## Overview
 
-Finance Tracker allows users to:# 💰 Finance Tracker
-
-![Python](https://img.shields.io/badge/Python-3.11+-3776AB?logo=python\&logoColor=white)
-![Flask](https://img.shields.io/badge/Flask-000000?logo=flask\&logoColor=white)
-![SQLite](https://img.shields.io/badge/SQLite-07405E?logo=sqlite\&logoColor=white)
-![Tests](https://img.shields.io/badge/Tests-unittest-green)
-![Status](https://img.shields.io/badge/Status-Active-success)
-![License](https://img.shields.io/badge/License-MIT-lightgrey)
+Finance Tracker allows users to:
 
 A production-inspired personal finance application with both **web and CLI interfaces**, built to manage expenses, organize categories, and generate monthly insights.
 
