@@ -13,16 +13,6 @@ This project was created as a production-inspired finance application to demonst
 
 ---
 
-## Overview
-
-Finance Tracker allows users to:
-
-A production-inspired personal finance application with both **web and CLI interfaces**, built to manage expenses, organize categories, and generate monthly insights.
-
-This project demonstrates **backend architecture, data modeling, authentication, and scalable application design**.
-
----
-
 ## 🚀 Overview
 
 Finance Tracker allows users to:
