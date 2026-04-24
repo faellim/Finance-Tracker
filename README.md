@@ -369,15 +369,6 @@ python -m unittest discover -s tests
 
 ---
 
-## Suggested Additions
-
-* Add screenshots of the dashboard, login, and summary pages
-* Include a short demo GIF
-* Show CLI usage in action
-* Add a short demo video if desired
-
----
-
 ## License
 
 This project is licensed under the MIT License.
