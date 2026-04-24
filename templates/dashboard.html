@@ -1,0 +1,140 @@
+{% extends "base.html" %}
+
+{% block title %}{{ t('dashboard_title') }}{% endblock %}
+
+{% block content %}
+<section class="dashboard-hero">
+    <div>
+        <div class="eyebrow">{{ t('dashboard_eyebrow') }}</div>
+        <h1>{{ t('dashboard_heading', name=current_user_name) }}</h1>
+        <p>{{ t('dashboard_text') }}</p>
+    </div>
+    <form class="month-filter" method="get">
+        <label for="month">{{ t('month_label') }}</label>
+        <input id="month" type="month" name="month" value="{{ selected_month }}">
+        <button class="button secondary" type="submit">{{ t('dashboard_update') }}</button>
+    </form>
+</section>
+
+<section class="dashboard-grid">
+    <div class="dashboard-main">
+        <div class="summary-row">
+            <article class="summary-card emphasis">
+                <span>{{ t('dashboard_total') }}</span>
+                <strong>${{ summary.total_expenses }}</strong>
+                <small>{{ summary.month }}</small>
+            </article>
+            <article class="summary-card">
+                <span>{{ t('home_transactions') }}</span>
+                <strong>{{ summary.number_of_expenses }}</strong>
+                <small>{{ t('dashboard_registered_this_month') }}</small>
+            </article>
+            <article class="summary-card">
+                <span>{{ t('dashboard_top_category') }}</span>
+                <strong>{{ top_category.category_name if top_category else t('dashboard_no_data') }}</strong>
+                <small>{% if top_category %}${{ top_category.total_amount }}{% else %}{{ t('dashboard_add_expense_to_insight') }}{% endif %}</small>
+            </article>
+        </div>
+
+        <div class="panel">
+            <div class="panel-heading">
+                <div>
+                    <div class="eyebrow">{{ t('dashboard_breakdown_eyebrow') }}</div>
+                    <h2>{{ t('dashboard_breakdown_heading') }}</h2>
+                </div>
+            </div>
+            {% if category_breakdown %}
+            <div class="category-bars">
+                {% for item in category_breakdown %}
+                {% set percentage = ((item.total_amount / summary.total_expenses) * 100) if summary.total_expenses > 0 else 0 %}
+                <div class="category-bar">
+                    <div class="category-bar-head">
+                        <span>{{ item.category_name }}</span>
+                        <strong>${{ item.total_amount }}</strong>
+                    </div>
+                    <div class="bar-track">
+                        <div class="bar-fill" style="width: {{ '%.2f'|format(percentage) }}%;"></div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+            {% else %}
+            <p class="empty-state">{{ t('dashboard_empty_month') }}</p>
+            {% endif %}
+        </div>
+
+        <div class="panel">
+            <div class="panel-heading">
+                <div>
+                    <div class="eyebrow">{{ t('dashboard_history_eyebrow') }}</div>
+                    <h2>{{ t('dashboard_history_heading') }}</h2>
+                </div>
+            </div>
+            {% if expenses %}
+            <div class="table-wrap">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>{{ t('table_date') }}</th>
+                            <th>{{ t('table_category') }}</th>
+                            <th>{{ t('table_title') }}</th>
+                            <th>{{ t('table_amount') }}</th>
+                            <th>{{ t('table_notes') }}</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for expense in expenses %}
+                        <tr>
+                            <td>{{ expense.expense_date }}</td>
+                            <td>{{ expense.category_name }}</td>
+                            <td>{{ expense.title }}</td>
+                            <td>${{ expense.amount }}</td>
+                            <td>{{ expense.notes or "-" }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            {% else %}
+            <p class="empty-state">{{ t('dashboard_no_expenses') }}</p>
+            {% endif %}
+        </div>
+    </div>
+
+    <aside class="dashboard-sidebar">
+        <div class="panel accent">
+            <div class="eyebrow">{{ t('dashboard_new_expense_eyebrow') }}</div>
+            <h2>{{ t('dashboard_new_expense_heading') }}</h2>
+            <form class="expense-form" method="post">
+                <input type="hidden" name="month" value="{{ selected_month }}">
+                <label>
+                    {{ t('label_title') }}
+                    <input type="text" name="title" placeholder="{{ t('placeholder_title') }}" required>
+                </label>
+                <label>
+                    {{ t('label_category') }}
+                    <select name="category" required>
+                        <option value="">{{ t('placeholder_category') }}</option>
+                        {% for category in categories %}
+                        <option value="{{ category.name }}">{{ category.name }}</option>
+                        {% endfor %}
+                    </select>
+                </label>
+                <label>
+                    {{ t('label_amount') }}
+                    <input type="text" name="amount" placeholder="{{ t('placeholder_amount') }}" required>
+                </label>
+                <label>
+                    {{ t('label_date') }}
+                    <input type="date" name="expense_date" required>
+                </label>
+                <label>
+                    {{ t('label_notes') }}
+                    <textarea name="notes" rows="4" placeholder="{{ t('placeholder_notes') }}"></textarea>
+                </label>
+                <button class="button primary" type="submit">{{ t('button_save_expense') }}</button>
+            </form>
+        </div>
+    </aside>
+</section>
+{% endblock %}

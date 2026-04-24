@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+
+{% block title %}{{ t('login_title') }}{% endblock %}
+
+{% block body_class %}auth-body{% endblock %}
+
+{% block content %}
+<section class="auth-layout">
+    <div class="auth-panel intro">
+        <div class="eyebrow">{{ t('login_eyebrow') }}</div>
+        <h1>{{ t('login_heading') }}</h1>
+        <p>{{ t('login_text') }}</p>
+        <div class="auth-highlights">
+            <div>
+                <strong>{{ t('login_highlight_1_title') }}</strong>
+                <span>{{ t('login_highlight_1_text') }}</span>
+            </div>
+            <div>
+                <strong>{{ t('login_highlight_2_title') }}</strong>
+                <span>{{ t('login_highlight_2_text') }}</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="auth-panel form-panel">
+        <form class="auth-form" method="post">
+            <div class="eyebrow">{{ t('login_form_eyebrow') }}</div>
+            <h2>{{ t('login_form_heading') }}</h2>
+            <label>
+                {{ t('label_email') }}
+                <input type="email" name="email" placeholder="{{ t('placeholder_email') }}" required>
+            </label>
+            <label>
+                {{ t('label_password') }}
+                <input type="password" name="password" placeholder="{{ t('placeholder_password_login') }}" required>
+            </label>
+            <button class="button primary" type="submit">{{ t('login_button') }}</button>
+            <p class="auth-switch">{{ t('login_switch') }} <a href="{{ url_for('register') }}">{{ t('nav_signup') }}</a></p>
+        </form>
+    </div>
+</section>
+{% endblock %}

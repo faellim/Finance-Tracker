@@ -1,0 +1,123 @@
+{% extends "base.html" %}
+
+{% block title %}{{ t('demo_title') }}{% endblock %}
+
+{% block content %}
+<section class="dashboard-hero">
+    <div>
+        <div class="eyebrow">{{ t('demo_eyebrow') }}</div>
+        <h1>{{ t('demo_heading') }}</h1>
+        <p>{{ t('demo_text') }}</p>
+    </div>
+    <form class="month-filter" method="get">
+        <label for="month">{{ t('month_label') }}</label>
+        <input id="month" type="month" name="month" value="{{ selected_month }}">
+        <button class="button secondary" type="submit">{{ t('demo_update') }}</button>
+    </form>
+</section>
+
+<section class="dashboard-grid">
+    <div class="dashboard-main">
+        <div class="summary-row">
+            <article class="summary-card emphasis">
+                <span>{{ t('demo_total') }}</span>
+                <strong>${{ summary.total_expenses }}</strong>
+                <small>{{ summary.month }}</small>
+            </article>
+            <article class="summary-card">
+                <span>{{ t('demo_transactions') }}</span>
+                <strong>{{ summary.number_of_expenses }}</strong>
+                <small>{{ t('demo_transactions_value') }}</small>
+            </article>
+            <article class="summary-card">
+                <span>{{ t('demo_proof') }}</span>
+                <strong>{{ t('demo_proof_value') }}</strong>
+                <small>{{ t('demo_proof_value_2') }}</small>
+            </article>
+        </div>
+
+        <div class="panel">
+            <div class="panel-heading">
+                <div>
+                    <div class="eyebrow">{{ t('demo_breakdown_eyebrow') }}</div>
+                    <h2>{{ t('demo_breakdown_heading') }}</h2>
+                </div>
+                <a class="button tertiary" href="{{ url_for('docs') }}">{{ t('demo_docs_cta') }}</a>
+            </div>
+            {% if category_breakdown %}
+            <div class="category-bars">
+                {% for item in category_breakdown %}
+                {% set percentage = ((item.total_amount / summary.total_expenses) * 100) if summary.total_expenses > 0 else 0 %}
+                <div class="category-bar">
+                    <div class="category-bar-head">
+                        <span>{{ item.category_name }}</span>
+                        <strong>${{ item.total_amount }}</strong>
+                    </div>
+                    <div class="bar-track">
+                        <div class="bar-fill" style="width: {{ '%.2f'|format(percentage) }}%;"></div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+            {% else %}
+            <p class="empty-state">{{ t('demo_no_data') }}</p>
+            {% endif %}
+        </div>
+
+        <div class="panel">
+            <div class="panel-heading">
+                <div>
+                    <div class="eyebrow">{{ t('demo_history_eyebrow') }}</div>
+                    <h2>{{ t('demo_history_heading') }}</h2>
+                </div>
+            </div>
+            <div class="table-wrap">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>{{ t('table_date') }}</th>
+                            <th>{{ t('table_category') }}</th>
+                            <th>{{ t('table_title') }}</th>
+                            <th>{{ t('table_amount') }}</th>
+                            <th>{{ t('table_notes') }}</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for expense in expenses %}
+                        <tr>
+                            <td>{{ expense.expense_date }}</td>
+                            <td>{{ expense.category_name }}</td>
+                            <td>{{ expense.title }}</td>
+                            <td>${{ expense.amount }}</td>
+                            <td>{{ expense.notes or "-" }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <aside class="dashboard-sidebar">
+        <div class="panel accent">
+            <div class="eyebrow">{{ t('demo_why_eyebrow') }}</div>
+            <h2>{{ t('demo_why_heading') }}</h2>
+            <div class="demo-proof-list">
+                <div>
+                    <strong>{{ t('demo_why_1_title') }}</strong>
+                    <p>{{ t('demo_why_1_text') }}</p>
+                </div>
+                <div>
+                    <strong>{{ t('demo_why_2_title') }}</strong>
+                    <p>{{ t('demo_why_2_text') }}</p>
+                </div>
+                <div>
+                    <strong>{{ t('demo_why_3_title') }}</strong>
+                    <p>{{ t('demo_why_3_text') }}</p>
+                </div>
+            </div>
+            <a class="button primary" href="{{ url_for('register') }}">{{ t('demo_create_account') }}</a>
+        </div>
+    </aside>
+</section>
+{% endblock %}

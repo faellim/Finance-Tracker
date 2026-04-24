@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="{{ current_lang }}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}{{ t('site_title') }}{% endblock %}</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body class="{% block body_class %}{% endblock %}">
+    <div class="page-shell">
+        <header class="site-header">
+            <a class="brand" href="{{ url_for('home') }}">
+                <span class="brand-mark">FT</span>
+                <span class="brand-copy">
+                    <strong>{{ t('site_title') }}</strong>
+                    <small>{{ t('portfolio_web_app') }}</small>
+                </span>
+            </a>
+            <nav class="site-nav">
+                <a class="{% if current_path == url_for('home') %}is-active{% endif %}" href="{{ url_for('home') }}">{{ t('nav_home') }}</a>
+                <a class="{% if current_path == url_for('demo') %}is-active{% endif %}" href="{{ url_for('demo') }}">{{ t('nav_live_demo') }}</a>
+                <a class="{% if current_path == url_for('docs') %}is-active{% endif %}" href="{{ url_for('docs') }}">{{ t('nav_docs') }}</a>
+                <a href="{{ github_url }}" target="_blank" rel="noreferrer">{{ t('nav_github') }}</a>
+                {% if current_user_name %}
+                <a class="{% if current_path == url_for('dashboard') %}is-active{% endif %}" href="{{ url_for('dashboard') }}">{{ t('nav_dashboard') }}</a>
+                <a href="{{ url_for('logout') }}">{{ t('nav_logout') }}</a>
+                {% else %}
+                <a class="{% if current_path == url_for('login') %}is-active{% endif %}" href="{{ url_for('login') }}">{{ t('nav_login') }}</a>
+                <a class="button ghost" href="{{ url_for('register') }}">{{ t('nav_signup') }}</a>
+                {% endif %}
+                <div class="language-switch">
+                    <span class="language-label">{{ t('lang_label') }}</span>
+                    {% for lang in supported_languages %}
+                    <a class="lang-pill {% if current_lang == lang %}is-active{% endif %}" href="{{ url_for('set_language', lang=lang, next=request.path) }}">{{ t('lang_' ~ lang) }}</a>
+                    {% endfor %}
+                </div>
+            </nav>
+        </header>
+
+        {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+        <section class="flash-stack">
+            {% for category, message in messages %}
+            <div class="flash flash-{{ category }}">{{ message }}</div>
+            {% endfor %}
+        </section>
+        {% endif %}
+        {% endwith %}
+
+        <main>
+            {% block content %}{% endblock %}
+        </main>
+    </div>
+    <footer class="site-footer">
+        <p>{{ t('footer_built_with') }}</p>
+        <p>&copy; {{ current_year }} {{ t('site_title') }} · <a href="{{ url_for('docs') }}">{{ t('footer_docs') }}</a></p>
+    </footer>
+</body>
+</html>

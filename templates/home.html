@@ -1,0 +1,216 @@
+{% extends "base.html" %}
+
+{% block title %}{{ t('home_title') }}{% endblock %}
+
+{% block body_class %}home-body{% endblock %}
+
+{% block content %}
+<section class="hero">
+    <div class="hero-copy">
+        <div class="eyebrow">{{ t('home_eyebrow') }}</div>
+        <h1>{{ t('home_heading') }}</h1>
+        <p>{{ t('home_intro') }}</p>
+        <div class="hero-actions hero-actions-wide">
+            <a class="button primary" href="{{ url_for('demo') }}">{{ t('home_cta_demo') }}</a>
+            <a class="button secondary" href="{{ url_for('docs') }}">{{ t('home_cta_docs') }}</a>
+            <a class="button tertiary" href="{{ github_url }}" target="_blank" rel="noreferrer">{{ t('home_cta_github') }}</a>
+        </div>
+        <ul class="hero-points">
+            <li>{{ t('home_point_1') }}</li>
+            <li>{{ t('home_point_2') }}</li>
+            <li>{{ t('home_point_3') }}</li>
+        </ul>
+    </div>
+
+    <div class="hero-visual">
+        <div class="hero-shape hero-shape-large"></div>
+        <div class="hero-shape hero-shape-small"></div>
+        <div class="device-stage">
+            <div class="desktop-device">
+                <div class="desktop-screen">
+                    <div class="desktop-topbar"></div>
+                    <div class="desktop-nav">
+                        <span>{{ t('home_overview') }}</span>
+                        <span>{{ t('home_budgets') }}</span>
+                        <span>{{ t('home_categories') }}</span>
+                    </div>
+                    <div class="desktop-stats">
+                        <div class="desktop-stat">
+                            <small>{{ t('home_total_spent') }}</small>
+                            <strong>${{ summary.total_expenses }}</strong>
+                        </div>
+                        <div class="desktop-stat">
+                            <small>{{ t('home_transactions') }}</small>
+                            <strong>{{ summary.number_of_expenses }}</strong>
+                        </div>
+                        <div class="desktop-stat">
+                            <small>{{ t('home_top_category') }}</small>
+                            <strong>{{ category_breakdown[0].category_name if category_breakdown else "N/A" }}</strong>
+                        </div>
+                    </div>
+                    <div class="desktop-chart">
+                        {% for item in category_breakdown[:5] %}
+                        <div class="chart-bar-group">
+                            <div class="chart-bar" style="height: {{ 35 + loop.index0 * 14 }}px;"></div>
+                            <small>{{ item.category_name[:3] }}</small>
+                        </div>
+                        {% endfor %}
+                    </div>
+                    <div class="desktop-list">
+                        {% for expense in expenses[:3] %}
+                        <div class="desktop-list-row">
+                            <span>{{ expense.title }}</span>
+                            <strong>${{ expense.amount }}</strong>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+                <div class="desktop-base"></div>
+            </div>
+
+            <div class="phone-device phone-front">
+                <div class="phone-notch"></div>
+                <div class="phone-screen">
+                    <div class="phone-header">{{ t('home_overview') }}</div>
+                    <div class="phone-balance">
+                        <small>{{ t('home_current_month') }}</small>
+                        <strong>${{ summary.total_expenses }}</strong>
+                    </div>
+                    <div class="ring-card">
+                        <div class="ring-chart"></div>
+                        <div class="ring-legend">
+                            {% for item in category_breakdown[:4] %}
+                            <div class="legend-row">
+                                <span class="legend-dot legend-{{ loop.index }}"></span>
+                                <small>{{ item.category_name }}</small>
+                            </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    <div class="phone-bottom-stats">
+                        <div>
+                            <small>{{ t('home_expenses') }}</small>
+                            <strong>{{ summary.number_of_expenses }}</strong>
+                        </div>
+                        <div>
+                            <small>{{ t('home_best_category') }}</small>
+                            <strong>{{ category_breakdown[0].category_name if category_breakdown else "N/A" }}</strong>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="proof-strip">
+    <div class="proof-item">
+        <span>{{ t('home_quality') }}</span>
+        <strong>{{ t('home_quality_value') }}</strong>
+    </div>
+    <div class="proof-item">
+        <span>{{ t('home_public_docs') }}</span>
+        <strong>{{ t('home_public_docs_value') }}</strong>
+    </div>
+    <div class="proof-item">
+        <span>{{ t('home_validation') }}</span>
+        <strong>{{ t('home_validation_value') }}</strong>
+    </div>
+    <div class="proof-item">
+        <span>{{ t('home_stack') }}</span>
+        <strong>{{ t('home_stack_value') }}</strong>
+    </div>
+</section>
+
+<section class="story-grid technical-grid">
+    <article class="story-card">
+        <h2>{{ t('home_feature_1_title') }}</h2>
+        <p>{{ t('home_feature_1_text') }}</p>
+    </article>
+    <article class="story-card">
+        <h2>{{ t('home_feature_2_title') }}</h2>
+        <p>{{ t('home_feature_2_text') }}</p>
+    </article>
+    <article class="story-card">
+        <h2>{{ t('home_feature_3_title') }}</h2>
+        <p>{{ t('home_feature_3_text') }}</p>
+    </article>
+    <article class="story-card">
+        <h2>{{ t('home_feature_4_title') }}</h2>
+        <p>{{ t('home_feature_4_text') }}</p>
+    </article>
+    <article class="story-card">
+        <h2>{{ t('home_feature_5_title') }}</h2>
+        <p>{{ t('home_feature_5_text') }}</p>
+    </article>
+    <article class="story-card">
+        <h2>{{ t('home_feature_6_title') }}</h2>
+        <p>{{ t('home_feature_6_text') }}</p>
+    </article>
+</section>
+
+<section class="architecture-panel home-architecture">
+    <div class="panel-heading">
+        <div>
+            <div class="eyebrow">{{ t('home_arch_eyebrow') }}</div>
+            <h2>{{ t('home_arch_heading') }}</h2>
+        </div>
+        <a class="button tertiary" href="{{ url_for('docs') }}">{{ t('home_arch_cta') }}</a>
+    </div>
+    <div class="architecture-flow">
+        <div class="flow-node">
+            <span>{{ t('arch_routes') }}</span>
+            <strong>{{ t('arch_routes_value') }}</strong>
+            <small>{{ t('arch_routes_text') }}</small>
+        </div>
+        <div class="flow-arrow">&rarr;</div>
+        <div class="flow-node">
+            <span>{{ t('arch_services') }}</span>
+            <strong>{{ t('arch_services_value') }}</strong>
+            <small>{{ t('arch_services_text') }}</small>
+        </div>
+        <div class="flow-arrow">&rarr;</div>
+        <div class="flow-node">
+            <span>{{ t('arch_repositories') }}</span>
+            <strong>{{ t('arch_repositories_value') }}</strong>
+            <small>{{ t('arch_repositories_text') }}</small>
+        </div>
+        <div class="flow-arrow">&rarr;</div>
+        <div class="flow-node">
+            <span>{{ t('arch_database') }}</span>
+            <strong>{{ t('arch_database_value') }}</strong>
+            <small>{{ t('arch_database_text') }}</small>
+        </div>
+    </div>
+</section>
+
+<section class="showcase">
+    <div class="showcase-copy">
+        <div class="eyebrow">{{ t('home_why_eyebrow') }}</div>
+        <h2>{{ t('home_why_heading') }}</h2>
+        <p>{{ t('home_why_text') }}</p>
+    </div>
+    <div class="showcase-board recruiter-board">
+        <div class="board-row">
+            <div class="board-stat">
+                <span>{{ t('home_recruiter_1') }}</span>
+                <strong>{{ t('home_recruiter_1_value') }}</strong>
+            </div>
+            <div class="board-stat">
+                <span>{{ t('home_recruiter_2') }}</span>
+                <strong>{{ t('home_recruiter_2_value') }}</strong>
+            </div>
+        </div>
+        <div class="board-row">
+            <div class="board-stat">
+                <span>{{ t('home_recruiter_3') }}</span>
+                <strong>{{ t('home_recruiter_3_value') }}</strong>
+            </div>
+            <div class="board-stat">
+                <span>{{ t('home_recruiter_4') }}</span>
+                <strong>{{ t('home_recruiter_4_value') }}</strong>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
