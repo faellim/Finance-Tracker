@@ -1,4 +1,9 @@
 # 💰 Finance Tracker
+![Python](https://img.shields.io/badge/Python-3.11+-blue)
+![Flask](https://img.shields.io/badge/Flask-Web%20Framework-black)
+![SQLite](https://img.shields.io/badge/SQLite-Database-blue)
+![Tests](https://img.shields.io/badge/Tests-unittest-green)
+![License](https://img.shields.io/badge/License-MIT-lightgrey)
 
 A **full-featured personal finance tracker** built with Python, designed to manage expenses, organize categories, and generate monthly insights through both a **web interface** and a **CLI tool**.
 
