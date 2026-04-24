@@ -80,6 +80,10 @@ Then open:
 http://127.0.0.1:5000
 ```
 
+## Deploy on Vercel
+
+This project includes `app.py` and `vercel.json` so the Flask app can be deployed on Vercel using the project root as the deployment directory.
+
 ## CLI commands
 
 The original CLI is still available for backend demonstrations:
