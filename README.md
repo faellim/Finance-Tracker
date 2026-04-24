@@ -10,11 +10,13 @@
 ![Finance Tracker Demo](./assets/finance-tracker-demo.gif)
 
 A full-featured personal finance tracker built with Python, designed to manage expenses, organize categories, and generate monthly insights through both a web interface and a CLI tool.
-see now: https://finance-tracker-ten-mu-27.vercel.app
 
 This project was created as a production-inspired finance application to demonstrate backend architecture, data modeling, authentication, and real-world application structure.
 
 ---
+
+🌐 Live Demo
+🔗 Frontend: https://finance-tracker-ten-mu-27.vercel.app/
 
 ## 🚀 Overview
 
