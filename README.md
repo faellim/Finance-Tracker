@@ -16,7 +16,7 @@ This project was created as a production-inspired finance application to demonst
 ---
 
 🌐 Live Demo
-🔗 Frontend: https://finance-tracker-ten-mu-27.vercel.app/
+🔗 Frontend: https://finance-tracker-ten-mu-27.vercel.app
 
 ## 🚀 Overview
 
