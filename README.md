@@ -1,17 +1,17 @@
-# 💰 Finance Tracker
+# Finance Tracker
 ![Python](https://img.shields.io/badge/Python-3.11+-blue)
 ![Flask](https://img.shields.io/badge/Flask-Web%20Framework-black)
 ![SQLite](https://img.shields.io/badge/SQLite-Database-blue)
 ![Tests](https://img.shields.io/badge/Tests-unittest-green)
 ![License](https://img.shields.io/badge/License-MIT-lightgrey)
 
-A **full-featured personal finance tracker** built with Python, designed to manage expenses, organize categories, and generate monthly insights through both a **web interface** and a **CLI tool**.
+A full-featured personal finance tracker built with Python, designed to manage expenses, organize categories, and generate monthly insights through both a web interface and a CLI tool.
 
-This project was created as a **production-inspired portfolio project** to demonstrate backend architecture, data modeling, authentication, and real-world application structure.
+This project was created as a production-inspired finance application to demonstrate backend architecture, data modeling, authentication, and real-world application structure.
 
 ---
 
-## 🚀 Overview
+## Overview
 
 Finance Tracker allows users to:
 
@@ -20,23 +20,23 @@ Finance Tracker allows users to:
 * Analyze monthly summaries and breakdowns
 * Interact through both a web dashboard and CLI
 
-It emphasizes **clean architecture, separation of concerns, and maintainable code design**.
+It emphasizes clean architecture, separation of concerns, and maintainable code design.
 
 ---
 
-## ✨ Key Highlights
+## Key Highlights
 
-* 🔐 Authentication system (signup & login)
-* 🧠 Layered backend architecture (services, repository, models)
-* 💾 Persistent storage with SQLite
-* 📊 Monthly summaries and category breakdowns
-* 🌐 Web interface with a clean UI
-* 🧪 Unit-tested business logic
-* 💻 CLI support for backend interaction and demos
+* Authentication system with signup and login
+* Layered backend architecture with services, repository, and models
+* Persistent storage with SQLite
+* Monthly summaries and category breakdowns
+* Web interface with a clean UI
+* Unit-tested business logic
+* CLI support for backend interaction and demos
 
 ---
 
-## 🧩 Features
+## Features
 
 * Create and manage expense categories
 * Add expenses with title, amount, date, and notes
@@ -48,38 +48,41 @@ It emphasizes **clean architecture, separation of concerns, and maintainable cod
 
 ---
 
-## 🏗️ Project Structure
+## Project Structure
 
 ```text
 finance-tracker/
-├── run.py
-├── pyproject.toml
-├── static/
-│   └── css/
-│       └── styles.css
-├── templates/
-│   ├── base.html
-│   ├── dashboard.html
-│   ├── home.html
-│   ├── login.html
-│   └── register.html
-├── tests/
-│   └── test_service.py
-└── src/finance_tracker/
-    ├── __main__.py
-    ├── cli.py
-    ├── database.py
-    ├── demo.py
-    ├── models.py
-    ├── money.py
-    ├── repository.py
-    ├── services.py
-    └── web.py
+|-- run.py
+|-- pyproject.toml
+|-- static/
+|   `-- css/
+|       `-- styles.css
+|-- templates/
+|   |-- base.html
+|   |-- dashboard.html
+|   |-- demo.html
+|   |-- docs.html
+|   |-- home.html
+|   |-- login.html
+|   `-- register.html
+|-- tests/
+|   `-- test_service.py
+`-- src/finance_tracker/
+    |-- __main__.py
+    |-- cli.py
+    |-- database.py
+    |-- demo.py
+    |-- models.py
+    |-- money.py
+    |-- repository.py
+    |-- services.py
+    |-- translations.py
+    `-- web.py
 ```
 
 ---
 
-## ⚙️ Tech Stack
+## Tech Stack
 
 * Python 3.11+
 * Flask
@@ -90,30 +93,30 @@ finance-tracker/
 
 ---
 
-## ▶️ Running the Web App
+## Running the Web App
 
 ```bash
 python -m venv .venv
-.venv\Scripts\activate   # Windows
+.venv\Scripts\activate
 pip install -e .
 python run.py
 ```
 
 Open in your browser:
 
-```
+```text
 http://127.0.0.1:5000
 ```
 
 ---
 
-## ☁️ Deployment
+## Deployment
 
 The project includes `app.py` and `vercel.json` for deployment on Vercel.
 
 ---
 
-## 💻 CLI Usage
+## CLI Usage
 
 ```bash
 finance-tracker init-db
@@ -125,7 +128,7 @@ finance-tracker monthly-summary 2026-04
 
 ---
 
-## 🔄 Example User Flow
+## Example User Flow
 
 1. Access the landing page
 2. Create an account
@@ -135,7 +138,7 @@ finance-tracker monthly-summary 2026-04
 
 ---
 
-## 📊 Sample Output
+## Sample Output
 
 ```text
 Monthly summary for 2026-04
@@ -151,7 +154,7 @@ Breakdown by category:
 
 ---
 
-## 🧪 Running Tests
+## Running Tests
 
 ```bash
 python -m unittest discover -s tests
@@ -159,38 +162,27 @@ python -m unittest discover -s tests
 
 ---
 
-## 🛣️ Roadmap
+## Roadmap
 
 * [ ] Income tracking
 * [ ] CSV export
-* [ ] Edit & delete expenses
+* [ ] Edit and delete expenses
 * [ ] Recurring expenses
-* [ ] Dashboard charts & advanced filters
+* [ ] Dashboard charts and advanced filters
 
 ---
 
-## 🎯 Portfolio Notes
+## Suggested Additions
 
-This project focuses on:
-
-* Backend architecture and separation of concerns
-* Data modeling and validation
-* Authentication flow
-* Building a product-like experience
-
-In interviews, you can highlight:
-
-* Why services, repository, and web layers are separated
-* How validation and domain logic are structured
-* How CLI and web share the same core logic
-
----
-
-## 📸 Suggested Additions
-
-* Add screenshots (dashboard, login, summary)
-* Include a demo GIF
+* Add screenshots of the dashboard, login, and summary pages
+* Include a short demo GIF
 * Show CLI usage in action
-* Add a short demo video (optional)
+* Add a short demo video if desired
 
 ---
+
+## License
+
+This project is licensed under the MIT License.
+
+See the full license here: [LICENSE](./LICENSE)
