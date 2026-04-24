@@ -1,10 +1,20 @@
 from __future__ import annotations
 
+import os
 import sqlite3
+import tempfile
 from pathlib import Path
 
 
-DEFAULT_DB_PATH = Path("data/finance_tracker.db")
+def resolve_default_db_path() -> Path:
+    # Vercel functions run on a read-only deployment filesystem.
+    # /tmp is the writable location available at runtime.
+    if os.getenv("VERCEL"):
+        return Path(tempfile.gettempdir()) / "finance_tracker.db"
+    return Path("data/finance_tracker.db")
+
+
+DEFAULT_DB_PATH = resolve_default_db_path()
 
 
 def get_connection(db_path: Path | str = DEFAULT_DB_PATH) -> sqlite3.Connection:
