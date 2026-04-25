@@ -202,21 +202,6 @@ python -m unittest discover -s tests
 
 ---
 
-## 📸 Suggested Additions
-
-* Add screenshots of dashboard, login, and summaries
-* Include a demo GIF
-* Show CLI usage in action
-* Add a short demo video (optional)
-* Track personal expenses with structured data
-* Organize spending into custom categories
-* Analyze monthly summaries and breakdowns
-* Interact through both a web dashboard and CLI
-
-It emphasizes clean architecture, separation of concerns, and maintainable code design.
-
----
-
 ## Key Highlights
 
 * Authentication system with signup and login
