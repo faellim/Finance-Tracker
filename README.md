@@ -208,15 +208,6 @@ python -m unittest discover -s tests
 * Include a demo GIF
 * Show CLI usage in action
 * Add a short demo video (optional)
-
----
-
-## 📄 License
-
-This project is licensed under the MIT License.
-See the full license here: [LICENSE](./LICENSE)
-
-
 * Track personal expenses with structured data
 * Organize spending into custom categories
 * Analyze monthly summaries and breakdowns
